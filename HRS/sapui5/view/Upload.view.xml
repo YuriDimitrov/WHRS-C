@@ -1,0 +1,106 @@
+﻿<mvc:View
+  controllerName="sap.ui.cons.controller.Upload"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="sap.ui.cons.control"  
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+  xmlns:u="sap.ui.unified">
+  <Page
+		title="{i18n>_UploadTitle}"
+    showNavButton="false"
+		navButtonPress="onNavBack">
+    <content>
+      <f:Form
+      minWidth="1024"
+      maxContainerCols="2"
+      class="sapUiForceWidthAuto sapUiResponsiveMargin" >
+        <f:layout>
+          <f:ResponsiveGridLayout
+            labelSpanXL="3"
+            labelSpanL="3"
+            labelSpanM="3"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="0"
+            emptySpanL="0"
+            emptySpanM="0"
+            emptySpanS="0"
+            columnsXL="1"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false" />
+        </f:layout>
+        <f:formContainers>
+          <f:FormContainer>
+            <f:formElements>
+              <f:FormElement>
+                <f:fields>
+                  <FlexBox
+                  height="50px"
+                  width="100%"
+                  alignItems="Center"
+                  justifyContent="Left">
+                    <items>
+                      <Label text="{i18n>_DistrFileUploaderToolTip}"  class="sapUiTinyMarginEnd"/>
+                      <u:FileUploader
+                         id="distrFileUploader"                         
+                         width="100%"
+                         name="myFileUpload"
+                         class="sapUiSmallMarginEnd"
+                         sendXHR="true"
+                         uploadUrl="{/apiBaseUrl/}/api/Upload/UploadFile"
+                         tooltip="{i18n>_DistrFileUploaderToolTip}"
+                         uploadComplete="onUploadCompleted"
+                         uploadStart="onUploadStart"
+                         uploadOnChange="false"
+                         change="onFileSelected"
+                         fileType="xml,csv">
+                        <u:headerParameters>
+                          <u:FileUploaderParameter
+                            name="uniqueID"
+                            value="{/uniqueID}"/>
+                        </u:headerParameters>
+                      </u:FileUploader>
+                      <Button 
+                        id="uploadBtn"
+                        type="Accept"
+                        text="{i18n>_uploadBtn}"
+                        press="onUploadBtnPress"
+                        ariaDescribedBy="comingSoonButtonDescription genericButtonDescription"
+                        enabled="false"
+                        class="sapUiTinyMarginBegin">
+                        <layoutData>
+                          <FlexItemData growFactor="1" />
+                        </layoutData>
+                      </Button>
+                    </items>                   
+                  </FlexBox>                  
+                </f:fields>
+              </f:FormElement>
+              <f:FormElement>
+                <f:fields>
+                  <ProgressIndicator
+                    id="processTracker"
+                    class="sapUiSmallMarginBottom"
+                    percentValue="{/processPercent}"
+                    displayValue="{/processPercent}%"
+                    showValue="true"
+                    state="None" />
+                </f:fields>
+              </f:FormElement>
+            </f:formElements>
+          </f:FormContainer>
+        </f:formContainers>          
+      </f:Form>
+
+      <MessageStrip
+        id="uploadInfoMS"
+			type="Info"
+			showIcon="true"
+			text="Информация"/>
+      <TextArea placeholder="Enter Text" value="{/uploadInfo}" growing="true" growingMaxLines="10" width="100%"/>
+    </content>
+  </Page>
+</mvc:View>

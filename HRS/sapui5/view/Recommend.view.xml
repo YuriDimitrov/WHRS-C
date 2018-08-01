@@ -1,0 +1,30 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.Recommend"
+		xmlns="sap.m"
+	  xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:l="sap.ui.layout">
+  <Page title="Categories"
+        class="sapUiContentPadding"
+        showHeader="true"
+        showNavButton="true"
+		    navButtonPress="onNavBack"
+        enableScrolling="false" >
+    <TileContainer
+			id="container"
+			tileDelete="handleTileDelete"
+			tiles="{path : 'consModel>/categories'}">    
+      <CustomTile class="sapUiSmallMargin myCustomTileStyle" press="onCategoryPress">
+        <content>
+            <l:VerticalLayout>      
+                <!--<ImageContent src="sapui5/images/{consModel>name}-wine.svg" />-->
+               <Image src="{appSettings>/baseUrl}/sapui5/images/{consModel>name}-wine.svg" width="8rem" height="8rem"/>
+              <!--<Image src="{= ${appSettings>/baseUrl}+ '/sapui5/images/' + ${consModel>name} + '-wine.svg'}" width="8rem" height="8rem"/>-->
+                <Text text="{consModel>name}" class="sapUiMediumMarginBottom"
+                      width="100%" textAlign="Center"></Text>
+            </l:VerticalLayout>                
+        </content>
+      </CustomTile>
+    </TileContainer>   
+  </Page>
+</mvc:View>

@@ -1,0 +1,110 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.VendorProducts"
+		xmlns="sap.m"
+	  xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"    
+	  xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+  <Page title="Products"
+        class="sapUiContentPadding"        
+        enableScrolling="false">
+    <customHeader>
+      <Toolbar>
+        <Button type="Back" press="onNavBack" />
+        <ToolbarSpacer/>
+        <Title text="Products" level="H2"/>
+        <ToolbarSpacer/>
+        <Button type="Accept" text="Recommend me!" press="onRecommend" />
+        <!--<Button icon="sap-icon://search" press="onPress" ariaLabelledBy="editButtonLabel"/>-->
+      </Toolbar>
+    </customHeader>
+    <HeaderContainer id="ratingsContainer" scrollStep="200" width="100%">
+      <content>
+          <!--<l:VerticalLayout class="sapUiSmallMargin test">            
+            <l:HorizontalLayout>
+              <Image src="sapui5/images/red-wine.jpg" width="1rem" height="3rem"/>
+              <l:VerticalLayout>
+                <Text text="Product" width="100%" textAlign="Center" maxLines="1"/>
+                <Text text="Producer" width="100%" textAlign="Center" maxLines="1"/>
+                <RatingIndicator maxValue="5" enabled= "false" value="4" iconSize="12px" />
+              </l:VerticalLayout>
+              <button icon="sap-icon://decline" width="0.025rem" height="0.025rem" type="Transparent" press="onRemoveRatingBtnClick"/>
+            </l:HorizontalLayout>
+          </l:VerticalLayout>-->        
+      </content>
+    </HeaderContainer>
+    <TileContainer
+			id="container"
+			tileDelete="handleTileDelete"
+      tiles="{path : 'viewModel>/products',
+              parameters: {
+                operationMode: 'Server',
+                expand: 'categories, vendors, vendors/regions, vendors/regions/countries, appellation'
+              }}">
+      <CustomTile class="sapUiSmallMargin myCustomProductTileStyle" press="onCountryPress">
+        <content>
+          <l:VerticalLayout>
+            <Text text="{viewModel>name}" class="sapUiMediumMarginBottom prodNameText"
+                        width="100%" textAlign="Center" maxLines="2"></Text>
+            <l:HorizontalLayout>
+              <Image src="{appSettings>/baseUrl}/sapui5/images/{viewModel>photo_path}" width="3rem" height="10rem"/>
+              <f:Form id="FormDisplay354" editable="false">                
+                <f:layout>
+                  <f:ResponsiveGridLayout
+                    labelSpanXL="5"
+                    labelSpanL="5"
+                    labelSpanM="5"
+                    labelSpanS="5"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                  <f:FormContainer>
+                    <f:formElements>
+                      <f:FormElement label="Producer">
+                        <f:fields>
+                          <Text text="{viewModel>vendors/name}" id="vendor"  />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Country">
+                        <f:fields>
+                          <Text text="{viewModel>vendors/regions/countries/name}" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Region">
+                        <f:fields>
+                          <Text text="{viewModel>vendors/regions/name}" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Category">
+                        <f:fields>
+                          <Text text="{viewModel>categories/name}" id="category" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Appellation">
+                        <f:fields>
+                          <Text text="{viewModel>appellation/name}" id="appllation" />
+                        </f:fields>
+                      </f:FormElement>
+                    </f:formElements>
+                  </f:FormContainer>
+                </f:formContainers>
+              </f:Form>                
+            </l:HorizontalLayout>
+            <RatingIndicator id="RIndicator" maxValue="5" 
+                             class="sapUiSmallMarginBottom" 
+                             value="{ path:'viewModel>id', formatter: '.getCachedRationg'}" iconSize="30px" 
+                             tooltip="Rating Tooltip" change="onChangeRating" />
+          </l:VerticalLayout>
+        </content>
+      </CustomTile>
+    </TileContainer>
+  </Page>
+</mvc:View>

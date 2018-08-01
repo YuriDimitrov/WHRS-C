@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="092dcf084a0b4281bf85954d4fb1f0c2" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="hrsModel.appellation" Width="1.5" PointX="4.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.categories" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.characteristics_headers" Width="1.5" PointX="0.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.characteristics_values" Width="1.5" PointX="0.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.countries" Width="1.5" PointX="7" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.expert_product_characteristic" Width="1.5" PointX="9.125" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.expert_rates" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.experts" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.inventory" Width="1.5" PointX="2.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.products" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.regions" Width="1.5" PointX="7" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.star_ratings_rating" Width="1.5" PointX="1.625" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.star_ratings_userrating" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.user_rates" Width="1.5" PointX="11" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.users" Width="1.5" PointX="2.625" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrsModel.vendors" Width="1.5" PointX="7" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="hrsModel.productsvendors" />
+        <AssociationConnector Association="hrsModel.vendorsregions" />
+        <AssociationConnector Association="hrsModel.regionscountries" />
+        <AssociationConnector Association="hrsModel.categoriesproducts" />
+        <AssociationConnector Association="hrsModel.appellationregions" />
+        <AssociationConnector Association="hrsModel.appellationproducts" />
+        <AssociationConnector Association="hrsModel.inventoryproducts" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

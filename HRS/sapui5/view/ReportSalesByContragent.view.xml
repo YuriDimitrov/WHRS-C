@@ -1,0 +1,284 @@
+﻿<mvc:View
+  controllerName="sap.ui.cons.controller.ReportSalesByContragent"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="sap.ui.cons.control"
+  xmlns:u="sap.ui.unified"  
+	xmlns:f="sap.ui.layout.form" 
+  xmlns:l="sap.ui.layout"  
+	xmlns:core="sap.ui.core"
+  xmlns:ui="sap.ui.table">
+  <Page
+    showNavButton="true"
+		navButtonPress="onNavBack"
+    class="sapUiContentPadding">
+    <content>
+
+      <!--<Input
+      value="{/filter}"
+      description="PC"
+      width="100px"
+      fieldWidth="60%"
+      class="sapUiSmallMarginBottom" />
+      <u:Calendar
+        id="calendar"
+        select="handleCalendarSelect" />-->
+      <!--<Button
+					press="onRefreshActivities"
+					text="Refresh" />-->
+      <ui:Table
+        id="salesByContragentTable"
+        selectionMode="Single"
+        selectionBehavior="RowOnly"
+        rowHeight="24"
+        visibleRowCountMode="Auto"
+        rows="{
+			      path : 'consModel>/SalesByContragent',
+            parameters: {
+                operationMode: 'Server',
+                custom: {'fromDate': null,'toDate': null,'regionID': null,'territoryCode': null,'contrCode': null,'distrContrCode': null,'groupID': null,'itemCode': null}
+              },
+            $counui: true
+        }"
+        enableBusyIndicator="true"
+        ariaLabelledBy="title"
+        rowActionCount="1"
+        editable="false">      
+        <ui:noData>
+          <BusyIndicator class="sapUiMediumMargin"/>
+        </ui:noData>       
+        <ui:toolbar>
+          <Toolbar>
+            <Title id="title" text="{i18n>_MenuReportsSalesByContragent}"/>
+            <ToolbarSpacer/>
+            <Button	icon="sap-icon://refresh" press="onDataRefresh" />
+            <Button	icon="sap-icon://download" press="onDataExport" />
+          </Toolbar>
+        </ui:toolbar>
+        <ui:extension>
+           <!--регион, територия, обект (код и наименование при дистрибутор и при Тимбарк), група (артикули), артикул.-->
+          <l:Grid defaultSpan="L4 M6 S8" class="sapUiSmallMarginTop">
+            <HBox alignItems="Center" justifyContent="End">
+              <Label text="{i18n>_RSBCFromDate}" labelFor="fromDateDP" class="sapUiTinyMarginEnd"/>
+              <DatePicker
+			        id="fromDateDP"
+			        placeholder="{i18n>_RSBCFromDateDPPlaceHolder}"
+			        class="sapUiSmallMarginEnd"
+              valueFormat="dd.MM.yyyy"/>
+            </HBox>
+            
+            <HBox alignItems="Center"
+                  justifyContent="End">
+              <Label text="{i18n>_RSBCToDate}" labelFor="toDateDP" class="sapUiTinyMarginEnd"/>
+              <DatePicker
+			        id="toDateDP"
+			        placeholder="{i18n>_RSBCToDateDPPlaceHolder}"
+			        class="sapUiSmallMarginEnd" />
+            </HBox>
+            
+            <HBox alignItems="Center"
+                  justifyContent="End">
+              <Label text="{i18n>_RSBCFilterItem}" labelFor="cbContragent" class="sapUiTinyMarginEnd"/>
+              <ComboBox
+                id="cbItem"
+                showSecondaryValues= "true"
+                filterSecondaryValues= "true"                   
+                items="{
+						        path: 'consModel>/Items',
+						        sorter: { path: 'Code' }
+					        }">
+                        <core:ListItem key="{consModel>Code}" text="{consModel>Name}" additionalText="{consModel>Code}"/>
+              </ComboBox>
+            </HBox>
+            
+            <HBox alignItems="Center"
+                  justifyContent="End">
+            <Label text="{i18n>_RSBCFilterRegion}" labelFor="cbRegion" class="sapUiTinyMarginEnd"/>
+              <ComboBox
+                  id="cbRegion"
+                  showSecondaryValues= "true"
+                  filterSecondaryValues= "true"
+                  change="onCbRegionChange"                  
+                  items="{
+						        path: 'consModel>/Regions', 
+						        sorter: { path: 'R_Code' }
+					        }">
+                <core:ListItem key="{consModel>R_Code}" text="{consModel>R_Name}" additionalText="{consModel>R_Code}"/>
+              </ComboBox>
+              <!--<Input
+				        id="cbRegion"
+				        type="Text"
+				        placeholder="Enter Product ..."
+				        showSuggestion="true"
+				        suggestionItems="{consModel>/Regions}" >
+                <suggestionItems>
+                  <core:Item text="{consModel>R_Name}" />
+                </suggestionItems>
+              </Input>-->
+            </HBox>
+            
+            <HBox alignItems="Center"
+                  justifyContent="End">
+            <Label text="{i18n>_RSBCFilterTerritory}" labelFor="cbTerritory" class="sapUiTinyMarginEnd"/>
+              <ComboBox
+                  id="cbTerritory"
+                  showSecondaryValues= "true"
+                  filterSecondaryValues= "true"
+                  items="{
+						        path: 'consModel>/Territories',
+						        sorter: { path: 'T_Code' }
+					        }">
+                <core:ListItem key="{consModel>T_Code}" text="{consModel>T_Name}" additionalText="{consModel>T_Code}"/>
+              </ComboBox>
+            </HBox>
+            
+            <HBox alignItems="Center"
+                  justifyContent="End">
+            <Label text="{i18n>_RSBCFilterItemGroup}" labelFor="cbItemGroup" class="sapUiTinyMarginEnd"/>
+            <ComboBox
+                id="cbItemGroup"
+                showSecondaryValues= "true"
+                filterSecondaryValues= "true"
+                items="{
+						        path: 'consModel>/ItemGroups',
+						        sorter: { path: 'G_Code' }
+					        }">
+              <core:ListItem key="{consModel>G_Code}" text="{consModel>G_Name}" additionalText="{consModel>G_Code}"/>
+            </ComboBox>
+            </HBox>
+            
+            <HBox alignItems="Center"
+                  justifyContent="End">
+              <Label text="{i18n>_RSBCFilterContr}" labelFor="cbContragent" class="sapUiTinyMarginEnd"/>
+              <ComboBox
+                  id="cbContragent"
+                  showSecondaryValues= "true"
+                  filterSecondaryValues= "true"
+                  change="onCBContragentChange" 
+                  items="{
+						        path: 'consModel>/Contragents',
+						        sorter: { path: 'Code' }
+					        }">
+                <core:ListItem key="{consModel>Code}" text="{consModel>Name}" additionalText="{consModel>Code}"/>
+              </ComboBox>
+            </HBox>
+
+            <HBox alignItems="Center"
+                  justifyContent="End">
+              <Label text="{i18n>_RSBCFilterDistrContr}" labelFor="cbDistrContragents" class="sapUiTinyMarginEnd"/>
+              <ComboBox
+                  id="cbDistrContragents"
+                  showSecondaryValues= "true"
+                  filterSecondaryValues= "true"
+                  change="onCBDistrContragentsChange"
+                  items="{
+						        path: 'consModel>/DistrContragents',
+						        sorter: { path: 'DC_ContrID' }
+					        }">
+                <core:ListItem key="{consModel>DC_ContrID}" text="{consModel>DC_Name}" additionalText="{consModel>DC_ContrID}"/>
+              </ComboBox>
+            </HBox>
+
+            <HBox alignItems="Center"
+                justifyContent="End">
+              <Label text="{i18n>_RSBCFilterDealers}" labelFor="cbDealers" class="sapUiTinyMarginEnd"/>
+              <ComboBox
+                  id="cbDealers"
+                  showSecondaryValues= "true"
+                  filterSecondaryValues= "true"
+                  change="onCBDealersChange"
+                  items="{
+						        path: 'consModel>/Dealers',
+						        sorter: { path: 'D_ID' }
+					        }">
+                <core:ListItem key="{consModel>D_ID}" text="{consModel>D_Name}" additionalText="{consModel>D_ID}"/>
+              </ComboBox>
+            </HBox>
+          </l:Grid>
+        </ui:extension>
+        <ui:columns>
+          <ui:Column
+            id="contrCodeCol"
+            width="8rem"
+            sortProperty="ContragentCode"
+            filtered="true"
+            filterProperty="ContragentCode">
+            <Label text="{i18n>_RSBCContragentCode}"/>
+            <ui:template>
+              <Text text="{consModel>ContragentCode}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>          
+          <ui:Column
+           id="contrNameCol"
+           width="12rem"
+           sortProperty="ContragentName"
+           filtered="true"
+           filterProperty="ContragentName">
+            <Label text="{i18n>_RSBCContragentName}"/>
+            <ui:template>
+              <Text text="{consModel>ContragentName}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+          id="dealerIDCol"
+          width="7rem"
+          sortProperty="DealerID"
+          filtered="true"
+          filterProperty="DealerID">
+            <Label text="{i18n>_RSBCDealerID}"/>
+            <ui:template>
+              <Text text="{consModel>DealerID}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+          id="dealerNameCol"
+          width="7rem"
+          sortProperty="DealerName"
+          filtered="true"
+          filterProperty="DealerName">
+            <Label text="{i18n>_RSBCDealerName}"/>
+            <ui:template>
+              <Text text="{consModel>DealerName}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+          id="qttyCol"
+          width="7rem"
+          sortProperty="QttyClient"
+          filtered="true"
+          filterProperty="QttyClient">
+            <Label text="{i18n>_RSBCQttyClient}"/>
+            <ui:template>
+              <!--<Text text="{consModel>QttyClient}" wrapping="false"/>-->
+              <ObjectNumber number="{consModel>QttyClient}" 
+                            textAlign="End" 
+                            emphasized="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+          id="totalCol"
+          width="7rem"
+          sortProperty="TotalPrice"
+          filtered="true"
+          filterProperty="TotalPrice">
+            <Label text="{i18n>_RSBCTotalPrice}"/>
+            <ui:template>
+              <!--<Text text="{consModel>TotalPrice}" wrapping="false"/>-->
+              <ObjectNumber
+						    number="{
+							    parts: [{path: 'consModel>TotalPrice'}],
+							    type: 'sap.ui.model.type.Float',
+							    formatOptions: {
+								    showMeasure: false
+							    }
+						    }"
+                textAlign="End"
+                unit="{= ${consModel>TotalPrice} > 0 ? 'лв.' : ''}"/>
+            </ui:template>
+          </ui:Column>
+        </ui:columns>
+      
+    </ui:Table>
+    </content>
+  </Page>
+</mvc:View>

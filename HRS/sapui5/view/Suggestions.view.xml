@@ -1,0 +1,61 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.Suggestions"
+		xmlns="sap.m"
+	  xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout">
+  <Page title="Suggestions"
+        class="sapUiContentPadding"
+        showHeader="true"
+        enableScrolling="true"
+        showNavButton="true"
+		    navButtonPress="onNavBack">
+    <List
+      items="{path : 'viewModel>/products'}"
+      headerText="Products">
+      <items>
+        <!--<CustomListItem>
+          <VBox>
+            <RatingIndicator id="RIndicator" maxValue="10" value="2"
+                           class="sapUiSmallMarginBottom" iconSize="30px"
+                           tooltip="Rating Tooltip" change="onChangeRating" />
+          </VBox>
+        </CustomListItem>-->
+        <ObjectListItem
+          intro="{viewModel>VendorName}"
+          title="{viewModel>ProdName}"
+          icon="{appSettings>/baseUrl}/sapui5/images/{viewModel>PhotoPath}"
+          type="Active"
+          number="{viewModel>Rate}"
+          numberUnit="Rate"
+          numberState="{=  ${viewModel>Rate} > 3 ? 'Success' : 'Error' }"
+          markFlagged="false"          
+          markFavorite="false"
+          showMarkers="true">
+          <attributes>
+            <ObjectAttribute text="Category: {viewModel>CategoryName}" />
+            <ObjectAttribute text="Region: {viewModel>RegionName}" />
+            <ObjectAttribute text="Country: {viewModel>CountryName}" />
+          </attributes>
+          <markers>
+            <ObjectMarker
+              type="Favorite" 
+              visible="{=  ${viewModel>Rate} > 0 ? true : false }"/>
+            <ObjectMarker
+              type="Favorite"
+              visible="{=  ${viewModel>Rate} > 1 ? true : false }"/>
+            <ObjectMarker
+              type="Favorite"
+              visible="{=  ${viewModel>Rate} > 2 ? true : false }"/>
+            <ObjectMarker
+              type="Favorite"
+              visible="{=  ${viewModel>Rate} > 3 ? true : false }"/>
+            <ObjectMarker
+              type="Favorite"
+              visible="{=  ${viewModel>Rate} > 4 ? true : false }"/>
+          </markers>
+        </ObjectListItem>
+      </items>
+    </List>
+  </Page>
+</mvc:View>

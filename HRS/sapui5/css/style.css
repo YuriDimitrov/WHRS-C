@@ -1,0 +1,85 @@
+﻿html[dir="ltr"] .myAppDemoWT .myCustomButton.sapMBtn {
+   margin-right: 0.125rem
+}
+
+html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
+   margin-left: 0.125rem
+}
+
+.myAppDemoWT .myCustomText {
+   display: inline-block;
+   font-weight: bold;
+}
+
+
+/*  ProductRating */
+.myAppDemoWTProductRating {
+	padding: 0.75rem;
+}
+.myAppDemoWTProductRating .sapMRI {
+	vertical-align: initial;
+}
+
+/*  SideBar IconSize */
+.sapTntToolPageAsideContent .sapTntSideNavigation span.sapUiIcon {
+    font-size: 1.25rem;
+}
+
+/*  SideBar FontSize */
+.sapTntToolPageAsideContent .sapTntSideNavigation span.sapMText {
+    font-size: 1rem;
+}
+
+
+.imgLogo {
+   margin: 25px;
+}
+
+.myCustomTileStyle{
+height: 11rem;
+width: 8rem;
+/*height: 120px;
+width: 120px;*/        
+}
+
+.myCustomProductTileStyle{
+height: 18rem;
+width: 15rem;
+/*height: 120px;
+width: 120px;*/        
+}
+
+.myCustomInventoryTileStyle{
+height: 11rem;
+width: 15rem;
+/*height: 120px;
+width: 120px;*/        
+}
+
+.invProdNameText{
+ font-size: 14px;
+ font-style:italic;
+ height: 15px;
+}
+
+.prodNameText{
+    font-size:1.2rem;
+    height: 30px;
+}
+
+.test{    
+height: 5rem;
+}
+
+.hidden{
+    display:none;
+}
+
+.myCustomProductDetailsTileStyle{
+    height: 15rem;
+    width: 30rem;
+}
+
+.ratingLabel{
+    padding-top: 0.5rem;
+}

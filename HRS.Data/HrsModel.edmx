@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hrsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appellation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="region_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="characteristics_headers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="min_value" Type="int" Nullable="false" />
+          <Property Name="max_value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="characteristics_values">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="value" Type="int" Nullable="false" />
+          <Property Name="c_header_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="expert_product_characteristic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="characteristic_values" Type="int" Nullable="false" />
+          <Property Name="c_header_id_id" Type="int" Nullable="false" />
+          <Property Name="expert_id_id" Type="int" Nullable="false" />
+          <Property Name="product_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="expert_rates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rate" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="expert_id_id" Type="int" Nullable="false" />
+          <Property Name="product_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="experts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="avatar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="in_stock" Type="bit" Nullable="false" />
+          <Property Name="product_id_id" Type="int" Nullable="false" />
+          <Property Name="price" Type="numeric" Precision="6" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="photo_path" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="appellation_id_id" Type="int" Nullable="false" />
+          <Property Name="category_id_id" Type="int" Nullable="false" />
+          <Property Name="vendor_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="regions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="country_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="star_ratings_rating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="total" Type="int" Nullable="false" />
+          <Property Name="average" Type="numeric" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="object_id" Type="int" />
+          <Property Name="content_type_id" Type="int" />
+        </EntityType>
+        <EntityType Name="star_ratings_userrating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ip" Type="nvarchar(max)" />
+          <Property Name="score" Type="int" Nullable="false" />
+          <Property Name="rating_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="user_rates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rate" Type="int" Nullable="false" />
+          <Property Name="comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="product_id_id" Type="int" Nullable="false" />
+          <Property Name="user_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="avatar" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="region_id_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="hrsModelStoreContainer">
+          <EntitySet Name="appellation" EntityType="Self.appellation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="characteristics_headers" EntityType="Self.characteristics_headers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="characteristics_values" EntityType="Self.characteristics_values" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="countries" EntityType="Self.countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="expert_product_characteristic" EntityType="Self.expert_product_characteristic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="expert_rates" EntityType="Self.expert_rates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="experts" EntityType="Self.experts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventory" EntityType="Self.inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="regions" EntityType="Self.regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="star_ratings_rating" EntityType="Self.star_ratings_rating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="star_ratings_userrating" EntityType="Self.star_ratings_userrating" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_rates" EntityType="Self.user_rates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vendors" EntityType="Self.vendors" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hrsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="appellation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region_id_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="regions" Relationship="hrsModel.appellationregions" FromRole="appellation" ToRole="regions" />
+          <NavigationProperty Name="products" Relationship="hrsModel.appellationproducts" FromRole="appellation" ToRole="products" />
+        </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="hrsModel.categoriesproducts" FromRole="categories" ToRole="products" />
+        </EntityType>
+        <EntityType Name="characteristics_headers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="min_value" Type="Int32" Nullable="false" />
+          <Property Name="max_value" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="characteristics_values">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="value" Type="Int32" Nullable="false" />
+          <Property Name="c_header_id_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="countries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="regions" Relationship="hrsModel.regionscountries" FromRole="countries" ToRole="regions" />
+        </EntityType>
+        <EntityType Name="expert_product_characteristic">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="characteristic_values" Type="Int32" Nullable="false" />
+          <Property Name="c_header_id_id" Type="Int32" Nullable="false" />
+          <Property Name="expert_id_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="expert_rates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rate" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="expert_id_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="experts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="in_stock" Type="Boolean" Nullable="false" />
+          <Property Name="product_id_id" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="hrsModel.inventoryproducts" FromRole="inventory" ToRole="products" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="photo_path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="appellation_id_id" Type="Int32" Nullable="false" />
+          <Property Name="category_id_id" Type="Int32" Nullable="false" />
+          <Property Name="vendor_id_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="vendors" Relationship="hrsModel.productsvendors" FromRole="products" ToRole="vendors" />
+          <NavigationProperty Name="categories" Relationship="hrsModel.categoriesproducts" FromRole="products" ToRole="categories" />
+          <NavigationProperty Name="appellation" Relationship="hrsModel.appellationproducts" FromRole="products" ToRole="appellation" />
+          <NavigationProperty Name="inventory" Relationship="hrsModel.inventoryproducts" FromRole="products" ToRole="inventory" />
+        </EntityType>
+        <EntityType Name="regions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="country_id_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="vendors" Relationship="hrsModel.vendorsregions" FromRole="regions" ToRole="vendors" />
+          <NavigationProperty Name="countries" Relationship="hrsModel.regionscountries" FromRole="regions" ToRole="countries" />
+          <NavigationProperty Name="appellation" Relationship="hrsModel.appellationregions" FromRole="regions" ToRole="appellation" />
+        </EntityType>
+        <EntityType Name="star_ratings_rating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Int32" Nullable="false" />
+          <Property Name="average" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="object_id" Type="Int32" />
+          <Property Name="content_type_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="star_ratings_userrating">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="score" Type="Int32" Nullable="false" />
+          <Property Name="rating_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user_rates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rate" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendors">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="region_id_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="hrsModel.productsvendors" FromRole="vendors" ToRole="products" />
+          <NavigationProperty Name="regions" Relationship="hrsModel.vendorsregions" FromRole="vendors" ToRole="regions" />
+        </EntityType>
+        <EntityContainer Name="HrsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="appellation" EntityType="Self.appellation" />
+          <EntitySet Name="categories" EntityType="Self.categories" />
+          <EntitySet Name="characteristics_headers" EntityType="Self.characteristics_headers" />
+          <EntitySet Name="characteristics_values" EntityType="Self.characteristics_values" />
+          <EntitySet Name="countries" EntityType="Self.countries" />
+          <EntitySet Name="expert_product_characteristic" EntityType="Self.expert_product_characteristic" />
+          <EntitySet Name="expert_rates" EntityType="Self.expert_rates" />
+          <EntitySet Name="experts" EntityType="Self.experts" />
+          <EntitySet Name="inventory" EntityType="Self.inventory" />
+          <EntitySet Name="products" EntityType="Self.products" />
+          <EntitySet Name="regions" EntityType="Self.regions" />
+          <EntitySet Name="star_ratings_rating" EntityType="Self.star_ratings_rating" />
+          <EntitySet Name="star_ratings_userrating" EntityType="Self.star_ratings_userrating" />
+          <EntitySet Name="user_rates" EntityType="Self.user_rates" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <EntitySet Name="vendors" EntityType="Self.vendors" />
+          <AssociationSet Name="productsvendors" Association="hrsModel.productsvendors">
+            <End Role="products" EntitySet="products" />
+            <End Role="vendors" EntitySet="vendors" />
+          </AssociationSet>
+          <AssociationSet Name="vendorsregions" Association="hrsModel.vendorsregions">
+            <End Role="vendors" EntitySet="vendors" />
+            <End Role="regions" EntitySet="regions" />
+          </AssociationSet>
+          <AssociationSet Name="regionscountries" Association="hrsModel.regionscountries">
+            <End Role="regions" EntitySet="regions" />
+            <End Role="countries" EntitySet="countries" />
+          </AssociationSet>
+          <AssociationSet Name="categoriesproducts" Association="hrsModel.categoriesproducts">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="appellationregions" Association="hrsModel.appellationregions">
+            <End Role="appellation" EntitySet="appellation" />
+            <End Role="regions" EntitySet="regions" />
+          </AssociationSet>
+          <AssociationSet Name="appellationproducts" Association="hrsModel.appellationproducts">
+            <End Role="appellation" EntitySet="appellation" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="inventoryproducts" Association="hrsModel.inventoryproducts">
+            <End Role="inventory" EntitySet="inventory" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="productsvendors">
+          <End Type="hrsModel.products" Role="products" Multiplicity="*" />
+          <End Type="hrsModel.vendors" Role="vendors" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="vendors">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="vendor_id_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vendorsregions">
+          <End Type="hrsModel.vendors" Role="vendors" Multiplicity="*" />
+          <End Type="hrsModel.regions" Role="regions" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="regions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vendors">
+              <PropertyRef Name="region_id_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="regionscountries">
+          <End Type="hrsModel.regions" Role="regions" Multiplicity="*" />
+          <End Type="hrsModel.countries" Role="countries" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="countries">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="regions">
+              <PropertyRef Name="country_id_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="categoriesproducts">
+          <End Type="hrsModel.categories" Role="categories" Multiplicity="1" />
+          <End Type="hrsModel.products" Role="products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="category_id_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="appellationregions">
+          <End Type="hrsModel.appellation" Role="appellation" Multiplicity="*" />
+          <End Type="hrsModel.regions" Role="regions" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="regions">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="appellation">
+              <PropertyRef Name="region_id_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="appellationproducts">
+          <End Type="hrsModel.appellation" Role="appellation" Multiplicity="1" />
+          <End Type="hrsModel.products" Role="products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="appellation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="appellation_id_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="inventoryproducts">
+          <End Type="hrsModel.inventory" Role="inventory" Multiplicity="*" />
+          <End Type="hrsModel.products" Role="products" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inventory">
+              <PropertyRef Name="product_id_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hrsModelStoreContainer" CdmEntityContainer="HrsEntities">
+          <EntitySetMapping Name="appellation">
+            <EntityTypeMapping TypeName="hrsModel.appellation">
+              <MappingFragment StoreEntitySet="appellation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="region_id_id" ColumnName="region_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="hrsModel.categories">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="characteristics_headers">
+            <EntityTypeMapping TypeName="hrsModel.characteristics_headers">
+              <MappingFragment StoreEntitySet="characteristics_headers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="min_value" ColumnName="min_value" />
+                <ScalarProperty Name="max_value" ColumnName="max_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="characteristics_values">
+            <EntityTypeMapping TypeName="hrsModel.characteristics_values">
+              <MappingFragment StoreEntitySet="characteristics_values">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="c_header_id_id" ColumnName="c_header_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="hrsModel.countries">
+              <MappingFragment StoreEntitySet="countries">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="expert_product_characteristic">
+            <EntityTypeMapping TypeName="hrsModel.expert_product_characteristic">
+              <MappingFragment StoreEntitySet="expert_product_characteristic">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="characteristic_values" ColumnName="characteristic_values" />
+                <ScalarProperty Name="c_header_id_id" ColumnName="c_header_id_id" />
+                <ScalarProperty Name="expert_id_id" ColumnName="expert_id_id" />
+                <ScalarProperty Name="product_id_id" ColumnName="product_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="expert_rates">
+            <EntityTypeMapping TypeName="hrsModel.expert_rates">
+              <MappingFragment StoreEntitySet="expert_rates">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="expert_id_id" ColumnName="expert_id_id" />
+                <ScalarProperty Name="product_id_id" ColumnName="product_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="experts">
+            <EntityTypeMapping TypeName="hrsModel.experts">
+              <MappingFragment StoreEntitySet="experts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventory">
+            <EntityTypeMapping TypeName="hrsModel.inventory">
+              <MappingFragment StoreEntitySet="inventory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="in_stock" ColumnName="in_stock" />
+                <ScalarProperty Name="product_id_id" ColumnName="product_id_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="hrsModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="photo_path" ColumnName="photo_path" />
+                <ScalarProperty Name="appellation_id_id" ColumnName="appellation_id_id" />
+                <ScalarProperty Name="category_id_id" ColumnName="category_id_id" />
+                <ScalarProperty Name="vendor_id_id" ColumnName="vendor_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regions">
+            <EntityTypeMapping TypeName="hrsModel.regions">
+              <MappingFragment StoreEntitySet="regions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="country_id_id" ColumnName="country_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="star_ratings_rating">
+            <EntityTypeMapping TypeName="hrsModel.star_ratings_rating">
+              <MappingFragment StoreEntitySet="star_ratings_rating">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="average" ColumnName="average" />
+                <ScalarProperty Name="object_id" ColumnName="object_id" />
+                <ScalarProperty Name="content_type_id" ColumnName="content_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="star_ratings_userrating">
+            <EntityTypeMapping TypeName="hrsModel.star_ratings_userrating">
+              <MappingFragment StoreEntitySet="star_ratings_userrating">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="rating_id" ColumnName="rating_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_rates">
+            <EntityTypeMapping TypeName="hrsModel.user_rates">
+              <MappingFragment StoreEntitySet="user_rates">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="product_id_id" ColumnName="product_id_id" />
+                <ScalarProperty Name="user_id_id" ColumnName="user_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="hrsModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vendors">
+            <EntityTypeMapping TypeName="hrsModel.vendors">
+              <MappingFragment StoreEntitySet="vendors">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="region_id_id" ColumnName="region_id_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

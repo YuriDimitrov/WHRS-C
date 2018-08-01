@@ -1,0 +1,187 @@
+﻿/** {
+    padding: 0;
+    margin: 0;
+}*/
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+     display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}*/
+
+.BCS-info {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+
+
+footer {
+    align-self: flex-end;
+    -ms-flex: 0 0 20px;
+    -webkit-flex: 0 0 20px;    
+    flex: 0 0 20px;
+    width: 100%;
+}
+
+footer > p {
+    padding-left: 10px;
+}
+
+.hr-separator{
+    margin-bottom:5px;
+}
+
+/*Absolute position*/
+
+/*footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
+    display: table-cell;
+    vertical-align: middle;
+    min-height: 1em;
+}*/
+
+/*footer > p {
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        margin-top: -5px;
+        padding-left: 10px;
+    }*/
+
+.body-content {
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -ms-flex: 1 1 ;
+    -webkit-flex: 1 1 ;
+    flex: 1 1 ;
+    min-height:300px;
+    /*height:95%;*/
+    position: relative;
+    /* Set padding to keep content from hitting the edges */
+    /*padding-top: 15px !important;*/
+}
+
+/*.body-content > .jqGrid-holder{
+    margin-top: 15px;
+}*/
+
+.BCS-info {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 15px;
+}
+
+.logo-about {
+    width: 400px;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top{
+     align-self: flex-start;
+    -ms-flex: 0 0 20px;
+    -webkit-flex: 0 0 20px;    
+    flex: 0 0 20px;
+    width: 100%;
+}
+
+
+#RememberMe {
+    margin-left: 0;
+}
+
+.container {
+    width: 100%;
+    padding: 0 40px;
+}
+
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.dialog-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    min-height: 350px;
+}
+
+.navbar-collapse.collapse.navbar-collapse-custom {
+    display: none !important;
+}
+
+
+@media (max-width: 700px) {
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+        .navbar-collapse.collapse {
+            display: none !important;
+        }
+
+    .navbar-nav > li {
+        float: none;
+    }
+
+        .navbar-nav > li > a {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+
+    .collapsing {
+        overflow: hidden !important;
+    }
+}
+
+

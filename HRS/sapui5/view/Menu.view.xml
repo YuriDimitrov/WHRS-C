@@ -1,0 +1,23 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.Menu"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc">
+  <Page title="Home"
+        class="sapUiContentPadding">
+    <content>
+      <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Recommend"
+      subheader="Subheader" press="onRecommendPress">
+        <TileContent>
+          <ImageContent src="{appSettings>/baseUrl}/sapui5/images/recommended.svg" />
+        </TileContent>
+      </GenericTile>
+
+      <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Inventory"
+      subheader="Subheader" press="onInvPress">
+        <TileContent>
+          <ImageContent src="{appSettings>/baseUrl}/sapui5/images/grid.svg" />
+        </TileContent>
+      </GenericTile>
+    </content>
+  </Page>
+</mvc:View>

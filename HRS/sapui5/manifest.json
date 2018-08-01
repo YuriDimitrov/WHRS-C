@@ -1,0 +1,193 @@
+﻿{
+    "_version": "1.8.0",
+    "sap.app": {
+        "id": "sap.ui.cons",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "1.0.0"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "sap.ui.cons.view.MainPage",
+            "type": "XML",
+            "async": true,
+            "id": "toolPage"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30",
+            "libs": {
+                "sap.m": { }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "sap.ui.cons.i18n.i18n"
+                }
+            },
+            "invoice": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "Invoices.json"
+            }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "sap.ui.cons.view",
+                "controlId": "app",
+                "controlAggregation": "pages",
+                "async": true
+            },
+            "routes": [
+                {
+                    "pattern": "",
+                    "name": "menu",
+                    "target": "menu"
+                },
+                {
+                    "pattern": "recommend",
+                    "name": "recommend",
+                    "target": "recommend"
+                },
+                {
+                    "pattern": "countries/{categoryId}",
+                    "name": "countries",
+                    "target": "countries"
+                },
+                {
+                    "pattern": "vendors/{countryId}/{categoryId}",
+                    "name": "vendors",
+                    "target": "vendors"
+                },
+                {
+                    "pattern": "vendorproducts/{vendorId}/{categoryId}",
+                    "name": "vendorproducts",
+                    "target": "vendorproducts"
+                },
+                {
+                    "pattern": "suggestions",
+                    "name": "suggestions",
+                    "target": "suggestions"
+                },
+                {
+                    "pattern": "inventory",
+                    "name": "inventory",
+                    "target": "inventory"
+                },
+                {
+                    "pattern": "proddetl/{productId}",
+                    "name": "proddetl",
+                    "target": "proddetl"
+                },
+                {
+                    "pattern": "upload}",
+                    "name": "upload",
+                    "target": "upload"
+                },
+                {
+                    "pattern": "detail/{invoicePath}",
+                    "name": "detail",
+                    "target": "detail"
+                },
+                {
+                    "pattern": "reportstock",
+                    "name": "reportstock",
+                    "target": "reportstock"
+                },
+                {
+                    "pattern": "reportactivities",
+                    "name": "reportactivities",
+                    "target": "reportactivities"
+                },
+                {
+                    "pattern": "reportsalesbycontragent",
+                    "name": "reportsalesbycontragent",
+                    "target": "reportsalesbycontragent"
+                }
+            ],
+            "targets": {
+                "overview": {
+                    "viewID": "overview",
+                    "viewName": "Overview"
+                },
+                "menu": {
+                    "viewId": "menu",
+                    "viewName": "Menu"
+                },
+                "recommend": {
+                    "viewId": "recommend",
+                    "viewName": "Recommend"
+                },
+                "countries": {
+                    "viewId": "countries",
+                    "viewName": "Countries"
+                },
+                "vendors": {
+                    "viewId": "vendors",
+                    "viewName": "Vendors"
+                },
+                "vendorproducts": {
+                    "viewId": "vendorproducts",
+                    "viewName": "VendorProducts"
+                },
+                "suggestions": {
+                    "viewId": "suggestions",
+                    "viewName": "Suggestions"
+                },
+                "inventory": {
+                    "viewId": "inventory",
+                    "viewName": "Inventory"
+                },
+                "proddetl": {
+                    "viewId": "proddetl",
+                    "viewName": "Proddetl"
+                },
+                "upload": {
+                    "viewId": "upload",
+                    "viewName": "Upload"
+                },
+                "detail": {
+                    "viewId": "detail",
+                    "viewName": "Detail"
+                },
+                "reportstock": {
+                    "viewId": "reportstock",
+                    "viewName": "ReportStock"
+                },
+                "reportactivities": {
+                    "viewId": "reportactivities",
+                    "viewName": "ReportActivity"
+                },
+                "reportsalesbycontragent": {
+                    "viewId": "reportsalesbycontragent",
+                    "viewName": "ReportSalesByContragent"
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "contentDensities": {
+          "compact": true,
+          "cozy": true
+        }
+    }
+}

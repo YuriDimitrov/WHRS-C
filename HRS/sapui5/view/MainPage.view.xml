@@ -1,0 +1,75 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.MainPage"
+		xmlns="sap.m"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:tnt="sap.tnt"
+		displayBlock="true">
+  <tnt:ToolPage id="toolPage" sideExpanded="fasle">
+    <tnt:header>
+      <tnt:ToolHeader>
+        <!--<Button id="sideNavigationToggleButton"
+						icon="sap-icon://menu2"
+						type="Transparent"
+						press="onSideNavButtonPress">
+          <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow" />
+          </layoutData>
+        </Button>-->
+        <ToolbarSpacer>
+          <layoutData>
+            <OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px" />
+          </layoutData>
+        </ToolbarSpacer>
+        <tnt:ToolHeaderUtilitySeparator />
+        <Button text="HoReCa" wrapping="false" type="Transparent" press="onNavToHome">
+          <layoutData>
+            <OverflowToolbarLayoutData priority="Disappear" />
+          </layoutData>
+        </Button>
+        <ToolbarSpacer />
+      </tnt:ToolHeader>
+    </tnt:header>
+    <!--<tnt:sideContent>
+      <tnt:SideNavigation>
+        <tnt:item>
+          <tnt:NavigationList>           
+            <tnt:NavigationListItem
+              text="{i18n>_MenuUpload}"
+              icon="sap-icon://upload-to-cloud"
+              select="onNavToUpload"/>
+            <tnt:NavigationListItem
+              text="{i18n>_MenuReports}"
+              icon="sap-icon://activity-2">
+              <tnt:items>
+                <tnt:NavigationListItem
+                 text="{i18n>_MenuReportsActivity}"
+                 select="onNavToReportActivity"/>
+                <tnt:NavigationListItem
+                 text="{i18n>_MenuReportsStock}"
+                 select="onNavToReportStock"/>
+                <tnt:NavigationListItem
+                 text="{i18n>_MenuReportsSalesByContragent}"
+                 select="onNavToReportSalesByContragent"/>
+              </tnt:items>            
+          </tnt:NavigationListItem>
+            <tnt:NavigationListItem
+              text="{i18n>_MenuInfo}"
+              icon="sap-icon://hint"
+              select="onNavToInfo"/>
+          </tnt:NavigationList>
+        </tnt:item>
+        <tnt:fixedItem visible="true">
+          <tnt:NavigationList>
+            <tnt:NavigationListItem text="{i18n>_MenuLogout}"
+              icon="sap-icon://log"
+              select="onExitApp"/>
+          </tnt:NavigationList>
+        </tnt:fixedItem>
+      </tnt:SideNavigation>
+    </tnt:sideContent>-->
+    <tnt:mainContents>
+      <App class="myAppDemoWT" id="app"/>
+    </tnt:mainContents>
+  </tnt:ToolPage>
+
+</mvc:View>

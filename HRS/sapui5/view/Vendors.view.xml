@@ -1,0 +1,28 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.Vendors"
+		xmlns="sap.m"
+	  xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout">
+  <Page title="Vendors"
+        class="sapUiContentPadding"
+        showHeader="true"
+        enableScrolling="false"
+        showNavButton="true"
+		    navButtonPress="onNavBack">
+    <TileContainer
+			id="container"
+			tileDelete="handleTileDelete"
+      tiles="{path : 'viewModel>/vendors'}">
+      <CustomTile class="sapUiSmallMargin myCustomTileStyle" press="onCountryPress">
+        <content>
+          <l:VerticalLayout>
+            <Image src="{appSettings>/baseUrl}/sapui5/images/hrs-logo.svg" width="8rem" height="8rem"/>
+            <Text text="{viewModel>name}" class="sapUiMediumMarginBottom"
+                  width="100%" textAlign="Center"></Text>
+          </l:VerticalLayout>
+        </content>
+      </CustomTile>
+    </TileContainer>
+  </Page>
+</mvc:View>

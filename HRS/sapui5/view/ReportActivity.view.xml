@@ -1,0 +1,149 @@
+﻿<mvc:View
+  controllerName="sap.ui.cons.controller.ReportActivity"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="sap.ui.cons.control"  
+  xmlns:u="sap.ui.unified"
+  xmlns:ui="sap.ui.table">
+  <Page
+    showNavButton="true"
+		navButtonPress="onNavBack"
+    class="sapUiContentPadding">
+    <content>
+
+      <!--<Input
+      value="{/filter}"
+      description="PC"
+      width="100px"
+      fieldWidth="60%"
+      class="sapUiSmallMarginBottom" />
+      <u:Calendar
+        id="calendar"
+        select="handleCalendarSelect" />-->
+      <!--<Button
+					press="onRefreshActivities"
+					text="Refresh" />-->
+      <ui:Table
+        id="activitiesTable"
+        selectionMode="Single"
+        selectionBehavior="RowOnly"
+        rowHeight="24"
+        visibleRowCountMode="Auto"
+        rows="{
+			      path : 'consModel>/Activities',
+            parameters: {
+                operationMode: 'Server',                
+                select: 'ID, Reference, Reference2, UserID, ActivityType, Created, Reference3',
+                custom: {'test': 'test', test2:'1', test3: '0.1'}
+              },
+            $counui: true
+        }"
+        enableBusyIndicator="true"
+        ariaLabelledBy="title"
+        rowActionCount="1"
+        editable="false"        >
+        <ui:noData>
+          <BusyIndicator class="sapUiMediumMargin"/>
+        </ui:noData>
+        <ui:toolbar>
+          <Toolbar>
+            <Title id="title" text="{i18n>_ARTitle}"/>
+            <ToolbarSpacer/>
+          <Button	icon="sap-icon://download" press="onDataExport" />
+          </Toolbar>
+        </ui:toolbar>
+        <ui:columns>
+          <ui:Column
+            id="userID"
+            width="7rem"
+            sortProperty="UserID" 
+            filtered="true"
+            filterProperty="UserID">
+            <Label text="{i18n>_ARUserID}"/>
+            <ui:template>
+              <Text text="{consModel>UserID}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+            id="createdCol"
+            width="7.5rem"
+            sortProperty="Created"
+            filtered="false"
+            >
+            <Label text="{i18n>_ARCreatedAtDate}" />
+            <ui:template>
+              <ObjectIdentifier text="{
+                             path: 'consModel>Created',
+                             type: 'sap.ui.model.type.Date',
+                             formaatOptions: {
+                                 style: 'long',
+                                 source: {pattern: 'yyyy-MM-dd HH:mm:ss'}
+                             }
+                         }"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+         id="createdTimeCol"
+         width="7.5rem"         
+         filtered="false">
+            <Label text="{i18n>_ARCreatedAtTime}" />
+            <ui:template>
+              <ObjectIdentifier text="{
+                             path: 'consModel>Created',
+                             type: 'sap.ui.model.type.Time',
+                             formaatOptions: {
+                                 style: 'long',
+                                 source: {pattern: 'HH:mm:ss'}
+                             }
+                         }"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+           id="activityTypeCol"
+           width="7rem"
+           sortProperty="ActivityType"
+           filtered="true"
+           filterProperty="ActivityType">
+            <Label text="{i18n>_ARActivityType}"/>
+            <ui:template>
+              <Text text="{consModel>ActivityType}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+          id="referenceCol"
+          width="7rem"
+          sortProperty="Reference"
+          filtered="true"
+          filterProperty="Reference">
+            <Label text="{i18n>_ARReference}"/>
+            <ui:template>
+              <Text text="{consModel>Reference}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+          id="reference2Col"
+          width="7rem"
+          sortProperty="Reference2"
+          filtered="true"
+          filterProperty="Reference2">
+            <Label text="{i18n>_ARReference2}"/>
+            <ui:template>
+              <Text text="{consModel>Reference2}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+          <ui:Column
+          id="reference3Col"
+          width="7rem"
+          sortProperty="Reference3"
+          filtered="true"
+          filterProperty="Reference3">
+            <Label text="{i18n>_ARReference3}"/>
+            <ui:template>
+              <Text text="{consModel>Reference3}" wrapping="false"/>
+            </ui:template>
+          </ui:Column>
+        </ui:columns>
+      </ui:Table>
+    </content>
+  </Page>
+</mvc:View>

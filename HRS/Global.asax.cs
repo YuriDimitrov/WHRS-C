@@ -1,0 +1,33 @@
+﻿using HRS.App_Start;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+
+namespace HRS
+{
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=9394801
+
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            ///////////// OData Config /////////////
+            // Important! No routes should be registered before config.Routes.MapODataServiceRoute or error No non-OData HTTP route registered.
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            AreaRegistration.RegisterAllAreas();
+
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
+            AutofacConfig.RegisterAutofac();
+        }
+    }
+}

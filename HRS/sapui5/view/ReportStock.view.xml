@@ -1,0 +1,98 @@
+﻿<mvc:View
+  controllerName="sap.ui.cons.controller.ReportStock"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="sap.ui.cons.control">
+  <Page
+    showNavButton="true"
+		navButtonPress="onNavBack">
+    <Table
+       id="stockReportTable"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{
+			        path : 'consModel>/Stocks'
+            }">
+      <headerToolbar>
+        <Toolbar>
+          <Title text="{i18n>_SRTitle}"/>
+          <ToolbarSpacer/>
+        </Toolbar>
+      </headerToolbar>
+      <columns>
+        <Column
+          minScreenWidth="Small"
+          demandPopin="true"
+          width="4em">
+          <Text text="{i18n>_SRColDistr}"/>
+        </Column>
+        <Column>
+          <Text text="{i18n>_SRColDateTaken}"/>
+        </Column>
+        <Column>
+          <Text text="{i18n>_SRColItem}"/>
+        </Column>
+        <Column
+          minScreenWidth="Small"
+          demandPopin="true">
+          <Text text="{i18n>_SRColItemName}"/>
+        </Column>
+        <Column
+          hAlign="End"
+          minScreenWidth="Tablet"
+          demandPopin="false">
+          <Text text="{i18n>_SRColQtty}"/>
+        </Column>
+        <Column
+         minScreenWidth="Small"
+         demandPopin="true">
+          <Text text="{i18n>_SRColCItem}"/>
+        </Column>
+        <Column
+          minScreenWidth="Small"
+          demandPopin="true">
+          <Text text="{i18n>_SRColCItemName}"/>
+        </Column>
+        <Column
+          hAlign="End">
+          <Text text="{i18n>_SRColCQtty}"/>
+        </Column>
+        <Column
+          hAlign="End"
+          minScreenWidth="Small"
+          demandPopin="true">
+          <Text text="{i18n>_SRColUnitQtty}"/>
+        </Column>
+        <Column
+           minScreenWidth="Medium"
+          demandPopin="true">
+          <Text text="{i18n>_SRColUnit}"/>
+        </Column>
+      </columns>
+      <items>
+        <ColumnListItem         
+          press="onPress">
+          <cells>
+            <Text text="{consModel>Distr}"/>
+            <ObjectIdentifier text="{
+                             path: 'consModel>DateTaken',
+                             type: 'sap.ui.model.type.Date',
+                             formaatOptions: {
+                                 style: 'long',
+                                 source: {pattern: 'yyyy-MM-ddTHH:mm:ss'}
+                             }
+                         }"/>
+            <Text text="{consModel>Item}"/>
+            <Text text="{consModel>ItemName}"/>
+            <ObjectNumber number="{consModel>Qtty}" emphasized="false"/>
+            <Text text="{consModel>CItem}"/>
+            <Text text="{consModel>CItemName}"/>
+            <ObjectNumber number="{consModel>CQtty}" emphasized="false"/>
+            <ObjectNumber number="{consModel>UnitQtty}" emphasized="false"/>
+            <Text text="{consModel>Unit}"/>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+  </Page>
+</mvc:View>

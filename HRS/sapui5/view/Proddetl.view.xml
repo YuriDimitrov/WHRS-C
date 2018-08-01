@@ -1,0 +1,293 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.Proddetl"
+		xmlns="sap.m"
+	  xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+	  xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+  <Page title="Products"
+        class="sapUiContentPadding"
+        enableScrolling="true">
+    <customHeader>
+      <Toolbar>
+        <Button type="Back" press="onNavBack" />
+        <ToolbarSpacer/>
+        <Title text="Product" level="H2"/>
+        <ToolbarSpacer/>       
+      </Toolbar>
+    </customHeader>   
+    <TileContainer
+			id="container"
+      height="17rem"
+			tileDelete="handleTileDelete"
+      tiles="{path : 'viewModel>/ProductDetailsDTOes',
+                    parameters: {
+                      operationMode: 'Server',                     
+                      custom: {'opType': 'prodDetails'}
+                    }}">
+      <CustomTile class="myCustomProductDetailsTileStyle">
+        <content>
+          <l:VerticalLayout>
+            <Text text="{viewModel>ProdName}" class="sapUiTinyMarginBottom prodNameText"
+                        width="100%" textAlign="Center" maxLines="2"></Text>
+            <l:HorizontalLayout>
+                <Image src="{appSettings>/baseUrl}/sapui5/images/{viewModel>PhotoPath}" width="3rem" height="10rem"/>
+              <f:SimpleForm id="SimpleFormDisplay480_Trial"
+			                      editable="false"
+			                      layout="ResponsiveGridLayout"			                      
+			                      labelSpanXL="5"
+			                      labelSpanL="5"
+			                      labelSpanM="5"
+			                      labelSpanS="5"
+			                      adjustLabelSpan="false"
+			                      emptySpanXL="1"
+			                      emptySpanL="1"
+			                      emptySpanM="1"
+			                      emptySpanS="1"
+			                      columnsXL="4"
+			                      columnsL="4"
+			                      columnsM="4"
+			                      singleContainerFullSize="false" >
+                <f:content>                  
+                  <Label text="Producer" />
+                  <Text text="{viewModel>VendorName}" />
+                  <Label text="Country" />
+                  <Text text="{viewModel>CountryName}" />
+                  <Label text="Region" />
+                  <Text text="{viewModel>RegionName}"/>
+                  <Label text="Category" />
+                  <Text text="{viewModel>CategoryName}"/>
+                  <Label text="Appellation" />
+                  <Text text="{viewModel>Apellation}"/>
+                  <Label text="User Rating" labelFor="userRatingIndicatior" class="ratingLabel"/>
+                  <RatingIndicator id="userRatingIndicatior" value="{viewModel>UserAvgRate}" enabled="false" />
+                </f:content>
+              </f:SimpleForm>
+              <!--<f:Form id="FormDisplay354" editable="false">
+                <f:layout>
+                  <f:ResponsiveGridLayout
+                    labelSpanXL="5"
+                    labelSpanL="5"
+                    labelSpanM="5"
+                    labelSpanS="5"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                  <f:FormContainer>
+                    <f:formElements>
+                      <f:FormElement label="Producer">
+                        <f:fields>
+                          <Text text="{viewModel>VendorName}" id="vendor"  />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Country">
+                        <f:fields>
+                          <Text text="{viewModel>CountryName}" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Region">
+                        <f:fields>
+                          <Text text="{viewModel>RegionName}" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Category">
+                        <f:fields>
+                          <Text text="{viewModel>CategoryName}" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Appellation">
+                        <f:fields>
+                          <Text text="{viewModel>Apellation}" id="appllation" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="User rate" class="sapUiTinyMarginTop">
+                        <f:fields>
+                          <RatingIndicator id="userRIndicator" maxValue="5"
+                            class="sapUiTinyMarginBottom" value="{viewModel>UserAvgRate}" iconSize="20px"
+                            enabled="false" />
+                        </f:fields>
+                      </f:FormElement>
+                    </f:formElements>
+                  </f:FormContainer>
+                </f:formContainers>                  
+              </f:Form>-->
+              <l:VerticalLayout>
+                <!--<f:Form id="FormDisplayCharacteristics" editable="false">
+                  <f:layout>
+                    <f:ResponsiveGridLayout
+                      labelSpanXL="5"
+                      labelSpanL="5"
+                      labelSpanM="5"
+                      labelSpanS="5"
+                      adjustLabelSpan="false"
+                      emptySpanXL="4"
+                      emptySpanL="4"
+                      emptySpanM="4"
+                      emptySpanS="0"
+                      columnsXL="1"
+                      columnsL="1"
+                      columnsM="1"
+                      singleContainerFullSize="false" />
+                  </f:layout>
+                  <f:formContainers>
+                    <f:FormContainer>
+                      <f:formElements>
+                        <f:FormElement label="Sweetness">
+                          <f:fields>
+                            <Text text="{viewModel>SweetnessRate} / 5"  />
+                          </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Acidity">
+                          <f:fields>
+                            <Text text="{viewModel>AcidityRate} / 5" />
+                          </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Tannin">
+                          <f:fields>
+                            <Text text="{viewModel>TanninRate} / 5" />
+                          </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Alcohol">
+                          <f:fields>
+                            <Text text="{viewModel>AlcoholRate} / 5" />
+                          </f:fields>
+                        </f:FormElement>
+                        <f:FormElement label="Body">
+                          <f:fields>
+                            <Text text="{viewModel>BodyRate} / 5" />
+                          </f:fields>
+                        </f:FormElement>                       
+                        <f:FormElement label="Expert rate" class="ratingLabel">
+                          <f:fields>
+                            <RatingIndicator id="expertRIndicator" maxValue="5"
+                               class="sapUiTinyMarginBottom" value="{viewModel>ExpertAvgRate}" iconSize="20px"
+                               enabled="false" />
+                          </f:fields>
+                        </f:FormElement>
+                      </f:formElements>
+                    </f:FormContainer>
+                  </f:formContainers>                 
+                </f:Form>-->
+                <f:SimpleForm id="SimpleFormDisplayCharacteristics"
+                          editable="false"
+                          layout="ResponsiveGridLayout"
+                          labelSpanXL="5"
+                          labelSpanL="5"
+                          labelSpanM="5"
+                          labelSpanS="5"
+                          adjustLabelSpan="false"
+                          emptySpanXL="1"
+                          emptySpanL="1"
+                          emptySpanM="1"
+                          emptySpanS="1"
+                          columnsXL="4"
+                          columnsL="4"
+                          columnsM="4"
+                          singleContainerFullSize="false" >
+                  <f:content>
+                    <Label text="Sweetness" />
+                    <Text text="{viewModel>SweetnessRate} / 5" />
+                    <Label text="Acidity" />
+                    <Text text="{viewModel>AcidityRate} / 5" />
+                    <Label text="Tannin" />
+                    <Text text="{viewModel>TanninRate} / 5"/>
+                    <Label text="Alcohol" />
+                    <Text text="{viewModel>AlcoholRate} / 5"/>
+                    <Label text="Body" />
+                    <Text text="{viewModel>BodyRate} / 5"/>
+                    <Label text="Exp. Rating" labelFor="expertRatingIndicatior" class="ratingLabel"/>
+                    <RatingIndicator id="expertRatingIndicatior" value="{viewModel>ExpertAvgRate}" enabled="false" />
+                  </f:content>
+                </f:SimpleForm>
+              </l:VerticalLayout>
+            </l:HorizontalLayout>          
+          </l:VerticalLayout>
+        </content>
+      </CustomTile>
+    </TileContainer>
+    <l:HorizontalLayout>
+      <List
+        inset="true"
+    items="{path : 'viewModel>/ProductDetailsDTOes',
+           parameters: {
+                      operationMode: 'Server',                     
+                      custom: {'opType': 'userSuggestions'}
+                    }}"
+    headerText="User Rates">
+        <items>        
+          <ObjectListItem
+            intro="{viewModel>VendorName}"
+            title="{viewModel>ProdName}"
+            icon="{appSettings>/baseUrl}/sapui5/images/{viewModel>PhotoPath}"
+            type="Active"
+            number="{viewModel>UserAvgRate}"
+            numberUnit="Rate"
+            numberState="{=  ${viewModel>UserAvgRate} > 3 ? 'Success' : 'Error' }"
+            markFlagged="false"
+            markFavorite="false"
+            showMarkers="true">
+            <attributes>
+              <ObjectAttribute text="Category: {viewModel>CategoryName}" />
+              <ObjectAttribute text="Region: {viewModel>RegionName}" />
+              <ObjectAttribute text="Country: {viewModel>CountryName}" />
+            </attributes>
+            <markers>
+              <ObjectMarker
+                type="Favorite"
+                visible="{=  ${viewModel>UserAvgRate} > 0 ? true : false }"/>
+              <ObjectMarker
+                type="Favorite"
+                visible="{=  ${viewModel>UserAvgRate} > 1 ? true : false }"/>
+              <ObjectMarker
+                type="Favorite"
+                visible="{=  ${viewModel>UserAvgRate} > 2 ? true : false }"/>
+              <ObjectMarker
+                type="Favorite"
+                visible="{=  ${viewModel>UserAvgRate} > 3 ? true : false }"/>
+              <ObjectMarker
+                type="Favorite"
+                visible="{=  ${viewModel>UserAvgRate} > 4 ? true : false }"/>
+            </markers>
+          </ObjectListItem>
+        </items>
+      </List>
+
+      <List
+        inset="true"
+    items="{path : 'viewModel>/ProductDetailsDTOes',
+           parameters: {
+                      operationMode: 'Server',                     
+                      custom: {'opType': 'expertSuggestions'}
+                    }}"
+    headerText="Expert Rates">
+        <items>
+          <ObjectListItem
+            intro="{viewModel>VendorName}"
+            title="{viewModel>ProdName}"
+            icon="{appSettings>/baseUrl}/sapui5/images/{viewModel>PhotoPath}"
+            type="Active"
+            number="{viewModel>UserAvgRate}"
+            numberUnit="Rate"
+            numberState="{=  ${viewModel>UserAvgRate} > 95 ? 'Success' : 'Error' }"
+            markFlagged="false"
+            markFavorite="false"
+            showMarkers="true">
+            <attributes>
+              <ObjectAttribute text="Category: {viewModel>CategoryName}" />
+              <ObjectAttribute text="Region: {viewModel>RegionName}" />
+              <ObjectAttribute text="Country: {viewModel>CountryName}" />
+            </attributes>         
+          </ObjectListItem>
+        </items>
+      </List>
+    </l:HorizontalLayout>
+  </Page>
+</mvc:View>

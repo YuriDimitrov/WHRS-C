@@ -1,0 +1,84 @@
+﻿<mvc:View
+		controllerName="sap.ui.cons.controller.Inventory"
+		xmlns="sap.m"
+	  xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+	  xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout">
+  <Page title="Inventory"
+           class="sapUiContentPadding"
+        showHeader="true"
+        showNavButton="true"
+		    navButtonPress="onNavBack"
+        enableScrolling="false">
+    <TileContainer
+			id="container"
+			tileDelete="handleTileDelete"
+      tiles="{path : 'consModel>/inventories',
+              parameters: {
+                operationMode: 'Server',
+                expand: 'products/categories, products/vendors, products/vendors/regions, products/vendors/regions/countries, products/appellation'
+              }}">
+      <CustomTile class="sapUiSmallMargin myCustomInventoryTileStyle" press="onProductSelected">
+        <content>
+          <l:VerticalLayout>
+            <Text text="{consModel>products/name}" class="sapUiMediumMarginBottom invProdNameText"
+                        width="100%" textAlign="Center" maxLines="2"></Text>
+            <l:HorizontalLayout>
+              <Image src="{appSettings>/baseUrl}/sapui5/images/{consModel>products/photo_path}" width="2rem" height="7rem"/>
+              <f:Form id="FormDisplay354" editable="false">
+                <f:layout>
+                  <f:ResponsiveGridLayout
+                    labelSpanXL="5"
+                    labelSpanL="5"
+                    labelSpanM="5"
+                    labelSpanS="5"
+                    adjustLabelSpan="false"
+                    emptySpanXL="4"
+                    emptySpanL="4"
+                    emptySpanM="4"
+                    emptySpanS="0"
+                    columnsXL="1"
+                    columnsL="1"
+                    columnsM="1"
+                    singleContainerFullSize="false" />
+                </f:layout>
+                <f:formContainers>
+                  <f:FormContainer>
+                    <f:formElements>
+                      <f:FormElement label="Producer">
+                        <f:fields>
+                          <Text text="{consModel>products/vendors/name}" id="vendor"  />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Country">
+                        <f:fields>
+                          <Text text="{consModel>products/vendors/regions/countries/name}" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Region">
+                        <f:fields>
+                          <Text text="{consModel>products/vendors/regions/name}" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Category">
+                        <f:fields>
+                          <Text text="{consModel>products/categories/name}" id="category" />
+                        </f:fields>
+                      </f:FormElement>
+                      <f:FormElement label="Appellation">
+                        <f:fields>
+                          <Text text="{consModel>products/appellation/name}" id="appllation" />
+                        </f:fields>
+                      </f:FormElement>
+                    </f:formElements>
+                  </f:FormContainer>
+                </f:formContainers>
+              </f:Form>
+            </l:HorizontalLayout>
+          </l:VerticalLayout>
+        </content>
+      </CustomTile>
+    </TileContainer>
+  </Page>
+</mvc:View>

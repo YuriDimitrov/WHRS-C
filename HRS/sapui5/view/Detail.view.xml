@@ -1,0 +1,39 @@
+﻿<mvc:View
+  controllerName="sap.ui.cons.controller.Detail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:wt="sap.ui.cons.control">
+  <Page
+		title="{i18n>detailPageTitle}"
+    showNavButton="true"
+		navButtonPress="onNavBack">
+    <ObjectHeader
+      responsive="true"
+			fullScreenOptimized="true"
+			number="{
+				parts: [{path: 'consModel>UnitQtty'}],
+				type: 'sap.ui.model.type.Float',
+				formatOptions: {
+					showMeasure: false
+				}
+			}"
+			numberUnit="{consModel>/Unit}"
+    intro="{consModel>Item}"
+    title="{consModel>ItemName}">
+      <attributes>
+        <ObjectAttribute title="{i18n>quantityTitle}" text="{consModel>Qtty}"></ObjectAttribute>
+        <ObjectAttribute title="{i18n>dateTitle}" text="{
+					path: 'consModel>Created',
+					type: 'sap.ui.model.type.Date',
+					formaatOptions: {
+					  style: 'long',
+					  source: {
+						pattern: 'yyyy-MM-ddTHH:mm:ss'
+					  }
+					}
+				  }"/>
+      </attributes>
+    </ObjectHeader>
+    <wt:ProductRating id="rating" class="sapUiSmallMarginBeginEnd" change="onRatingChange"/>
+  </Page>
+</mvc:View>
